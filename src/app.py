@@ -66,3 +66,6 @@ answers = ["It is certain",
            "My sources say no",
            "Outlook not so good",
            "Very doubtful"]
+
+if __name__ == "__main__":
+        app.run(host='0.0.0.0')
