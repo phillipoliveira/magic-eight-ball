@@ -40,9 +40,10 @@ def commands():
     # Echo the URL verification challenge code back to Slack
     answer = random.choice(answers)
     response = app.response_class(
-        response=json.dumps({"text": answer}),
+        response=json.dumps({"text": answer,
+                             "response_type": "in_channel"}),
         status=200,
-        mimetype='application/json')
+        mimetype='application/json',)
     return response
 
 
