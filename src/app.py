@@ -2,6 +2,7 @@ from flask import Flask, request, Response
 from models.slack_commands import SlackCommands
 import random
 import json
+from foaas import fuck
 
 app = Flask(__name__)
 
@@ -35,12 +36,28 @@ def post_install():
         return Response('It worked!')
 
 
-@app.route('/eight_ball/commands', methods=['POST'])
+@app.route('/eight_ball/question', methods=['POST'])
 def commands():
-    # Echo the URL verification challenge code back to Slack
     answer = random.choice(answers)
     response = app.response_class(
         response=json.dumps({"text": answer,
+                             "response_type": "in_channel"}),
+        status=200,
+        mimetype='application/json',)
+    return response
+
+
+@app.route('/eight_ball/insult', methods=['POST'])
+def commands():
+    sender = request.form.getlist('user_name')[0]
+    raw_text = request.form.getlist('text')[0]
+    try:
+        name = raw_text.split("@")[1].split()[0]
+        insult = fuck.random(name=name, from_=sender).text
+    except IndexError:
+        insult = fuck.random(from_=sender).text
+    response = app.response_class(
+        response=json.dumps({"text": insult,
                              "response_type": "in_channel"}),
         status=200,
         mimetype='application/json',)
