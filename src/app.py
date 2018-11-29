@@ -37,7 +37,7 @@ def post_install():
 
 
 @app.route('/eight_ball/question', methods=['POST'])
-def commands():
+def question():
     answer = random.choice(answers)
     response = app.response_class(
         response=json.dumps({"text": answer,
@@ -48,7 +48,7 @@ def commands():
 
 
 @app.route('/eight_ball/insult', methods=['POST'])
-def commands():
+def insult():
     sender = request.form.getlist('user_name')[0]
     raw_text = request.form.getlist('text')[0]
     try:
