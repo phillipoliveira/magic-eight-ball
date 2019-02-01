@@ -56,7 +56,7 @@ class Poll(object):
                                         }
                                    ]
                     }
-        return json.loads(poll_head)
+        return json.dumps(poll_head)
 
 
 
