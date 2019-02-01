@@ -14,7 +14,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-122">
@@ -44,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="poll.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="poll.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/models/poll.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="885">
-              <caret line="57" column="21" lean-forward="true" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+            <state relative-caret-position="271">
+              <caret line="59" column="36" lean-forward="true" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -111,16 +111,16 @@
         <option value="$PROJECT_DIR$/src/models/__init__.py" />
         <option value="$PROJECT_DIR$/src/commons/database.py" />
         <option value="$PROJECT_DIR$/src/models/slack_commands.py" />
-        <option value="$PROJECT_DIR$/src/models/poll.py" />
         <option value="$PROJECT_DIR$/src/app.py" />
+        <option value="$PROJECT_DIR$/src/models/poll.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="258" />
-    <option name="y" value="42" />
-    <option name="width" value="972" />
-    <option name="height" value="576" />
+    <option name="x" value="59" />
+    <option name="y" value="59" />
+    <option name="width" value="1171" />
+    <option name="height" value="559" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -224,16 +224,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="258" y="42" width="972" height="576" extended-state="0" />
+    <frame x="59" y="59" width="1171" height="559" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49289098" visible="true" weight="0.33017877" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.491358" visible="true" weight="0.27304348" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.11899791" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.12337662" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info id="Structure" order="1" sideWeight="0.507109" side_tool="true" visible="true" weight="0.33017877" />
+      <window_info id="Structure" order="1" sideWeight="0.50864196" side_tool="true" visible="true" weight="0.27304348" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32985386" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39874738" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -655,6 +655,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-122">
+          <caret line="88" column="66" selection-start-line="88" selection-start-column="66" selection-end-line="88" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
@@ -664,20 +674,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/models/poll.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="57" column="21" lean-forward="true" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+        <state relative-caret-position="271">
+          <caret line="59" column="36" lean-forward="true" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-122">
-          <caret line="88" column="66" selection-start-line="88" selection-start-column="66" selection-end-line="88" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
