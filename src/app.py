@@ -71,6 +71,7 @@ def insult():
 def poll():
     username = request.form.getlist('user_name')[0]
     text = list(request.form.getlist('text')[0])
+    print(text)
     for line in reader(text):
         poll = line
     if len(poll) < 2:
@@ -78,6 +79,7 @@ def poll():
     else:
         response = Poll.create_poll(poll)
     return response
+
 
 @app.route('/poll_bot/respond', methods=['POST'])
 def respond_to_poll():
@@ -87,7 +89,7 @@ def respond_to_poll():
 def return_error():
     response = app.response_class(
         response=json.dumps(
-            {"text": "Sorry, I don't understand. Double-check your formating.".format(username),
+            {"text": "Sorry, I don't understand. Double-check your formating.",
              "response_type": "in_channel"}),
         status=200,
         mimetype='application/json')
