@@ -2,6 +2,8 @@ from flask import Flask, request, Response
 from models.slack_commands import SlackCommands
 import random
 import json
+from csv import reader
+from src.models.poll import Poll
 from foaas import fuck
 
 app = Flask(__name__)
@@ -51,6 +53,7 @@ def question():
 def insult():
     sender = request.form.getlist('user_name')[0]
     raw_text = request.form.getlist('text')[0]
+    if sender.lower() in ["kory katz", "phillolive"]
     try:
         name = raw_text.split("@")[1].split()[0]
         insult = fuck.random(name=name, from_=sender).text
@@ -61,6 +64,35 @@ def insult():
                              "response_type": "in_channel"}),
         status=200,
         mimetype='application/json',)
+    return response
+
+
+
+
+@app.route('/poll_bot/new_poll', methods=['POST'])
+def poll():
+    username = request.form.getlist('user_name')[0]
+    text = list(request.form.getlist('text')[0])
+    for line in reader(text):
+        poll = line
+    if len(poll) < 2:
+        response = return_error()
+    else:
+        response = poll.create_poll(poll)
+    return response
+
+# @app.route('/poll_bot/poll_id', methods=['POST'])
+# def respond_to_poll():
+#         return response
+
+
+def return_error():
+    response = app.response_class(
+        response=json.dumps(
+            {"text": "Sorry, I don't understand. Double-check your formating.".format(username),
+             "response_type": "in_channel"}),
+        status=200,
+        mimetype='application/json')
     return response
 
 
