@@ -3,7 +3,7 @@ from models.slack_commands import SlackCommands
 import random
 import json
 from csv import reader
-from src.models.poll import Poll
+from models.poll import Poll
 from foaas import fuck
 from pprint import pprint
 
@@ -67,8 +67,6 @@ def insult():
     return response
 
 
-
-
 @app.route('/poll_bot/new_poll', methods=['POST'])
 def poll():
     username = request.form.getlist('user_name')[0]
@@ -78,7 +76,7 @@ def poll():
     if len(poll) < 2:
         response = return_error()
     else:
-        response = poll.create_poll(poll)
+        response = Poll.create_poll(poll)
     return response
 
 @app.route('/poll_bot/respond', methods=['POST'])
