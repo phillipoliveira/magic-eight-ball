@@ -74,6 +74,7 @@ def poll():
     print(text)
     for line in reader(text):
         poll = line
+    print(poll)
     if len(poll) < 2:
         response = return_error()
     else:
