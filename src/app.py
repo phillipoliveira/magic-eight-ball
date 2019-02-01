@@ -84,6 +84,9 @@ def poll():
         response = return_error()
     else:
         response = Poll.create_poll(poll)
+        response = app.response_class(response,
+                                      status=200,
+                                      mimetype='application/json')
     return response
 
 
