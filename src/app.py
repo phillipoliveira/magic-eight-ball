@@ -6,6 +6,7 @@ from csv import reader
 from models.poll import Poll
 from foaas import fuck
 from unidecode import unidecode
+import re
 from pprint import pprint
 
 app = Flask(__name__)
@@ -72,10 +73,10 @@ def insult():
 def poll():
     username = request.form.getlist('user_name')[0]
     text = request.form.getlist('text')[0]
-    text = unidecode(text)
+    poll = list()
     for line in reader(text):
-        poll = line
-    print(poll)
+        if re.search('[a-zA-Z]', str(line)):
+            poll.append(line)
     if len(poll) < 2:
         response = return_error()
     else:
