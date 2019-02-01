@@ -92,8 +92,7 @@ def poll():
 
 @app.route('/poll_bot/respond', methods=['POST'])
 def respond_to_poll():
-    request_data = json.loads(request.data.decode('utf-8'))
-    pprint(request_data)
+    pprint(request.data)
     return return_error()
 
 
