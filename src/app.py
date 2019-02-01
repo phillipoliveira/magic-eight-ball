@@ -77,6 +77,7 @@ def poll():
     for line in reader(text):
         if re.search('[a-zA-Z]', str(line)):
             poll.append(line)
+    print(poll)
     if len(poll) < 2:
         response = return_error()
     else:

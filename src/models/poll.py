@@ -27,7 +27,9 @@ class Poll(object):
     @classmethod
     def create_poll(cls, poll):
         question = poll[0]
+        print(question)
         options = poll[1:]
+        print(options)
         formated_options = ""
         actions = list()
         count = 0
@@ -39,6 +41,7 @@ class Poll(object):
                             "text": "{}".format(cls.emoji_dict(count)),
                             "type": "button",
                             "value": "{}".format(cls.emoji_dict(count))})
+        print(formated_options)
         poll_head = {
                     "text": question,
                     "response_type": "in_channel",
