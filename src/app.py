@@ -92,7 +92,7 @@ def poll():
 
 @app.route('/poll_bot/respond', methods=['POST'])
 def respond_to_poll():
-    pprint(request.json)
+    pprint(request.form)
     return return_error()
 
 
