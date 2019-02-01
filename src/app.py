@@ -73,6 +73,8 @@ def insult():
 def poll():
     username = request.form.getlist('user_name')[0]
     text = request.form.getlist('text')[0]
+    text = (unidecode(text))
+    print(text)
     poll = list()
     for line in reader(text):
         if re.search('[a-zA-Z]', str(line)):
