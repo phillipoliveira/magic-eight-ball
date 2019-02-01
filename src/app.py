@@ -92,11 +92,9 @@ def poll():
 
 @app.route('/poll_bot/respond', methods=['POST'])
 def respond_to_poll():
-    multi_dict = request.args
-    for key in multi_dict:
-        print(multi_dict.get(key))
-        print(multi_dict.getlist(key))
-        return return_error()
+    request_data = json.loads(request.data.decode('utf-8'))
+    pprint(request_data)
+    return return_error()
 
 
 def return_error():
