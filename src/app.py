@@ -5,6 +5,7 @@ import json
 from csv import reader
 from src.models.poll import Poll
 from foaas import fuck
+from pprint import pprint
 
 app = Flask(__name__)
 
@@ -53,7 +54,6 @@ def question():
 def insult():
     sender = request.form.getlist('user_name')[0]
     raw_text = request.form.getlist('text')[0]
-    if sender.lower() in ["kory katz", "phillolive"]
     try:
         name = raw_text.split("@")[1].split()[0]
         insult = fuck.random(name=name, from_=sender).text
@@ -81,9 +81,9 @@ def poll():
         response = poll.create_poll(poll)
     return response
 
-# @app.route('/poll_bot/poll_id', methods=['POST'])
-# def respond_to_poll():
-#         return response
+@app.route('/poll_bot/respond', methods=['POST'])
+def respond_to_poll():
+        print(request.__dict__)
 
 
 def return_error():
