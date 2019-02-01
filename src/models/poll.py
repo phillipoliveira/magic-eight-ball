@@ -35,7 +35,7 @@ class Poll(object):
         count = 0
         for option in options:
             count += 1
-            option_stg = "{} {}\n".format(cls.emoji_dict(count), str(options[count - 1]))
+            option_stg = "{} {}\n".format(cls.emoji_dict(count), (options[count - 1])[0])
             formated_options = formated_options + option_stg
             actions.append({"name": "game",
                             "text": "{}".format(cls.emoji_dict(count)),
