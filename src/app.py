@@ -94,8 +94,8 @@ def poll():
 def respond_to_poll():
     multi_dict = request.args
     for key in multi_dict:
-        print multi_dict.get(key)
-        print multi_dict.getlist(key)
+        print(multi_dict.get(key))
+        print(multi_dict.getlist(key))
         return return_error()
 
 
