@@ -5,6 +5,7 @@ import json
 from csv import reader
 from models.poll import Poll
 from foaas import fuck
+from unidecode import unidecode
 from pprint import pprint
 
 app = Flask(__name__)
@@ -71,7 +72,7 @@ def insult():
 def poll():
     username = request.form.getlist('user_name')[0]
     text = request.form.getlist('text')[0]
-    print(text)
+    text = unidecode(text)
     for line in reader(text):
         poll = line
     print(poll)
