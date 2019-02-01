@@ -43,7 +43,7 @@ class Poll(object):
                             "value": "{}".format(cls.emoji_dict(count))})
         print(formated_options)
         poll_head = {
-                    "text": str(question),
+                    "text": question[0],
                     "response_type": "in_channel",
                     "attachments": [
                                         {
