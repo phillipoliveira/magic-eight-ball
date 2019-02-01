@@ -70,7 +70,7 @@ def insult():
 @app.route('/poll_bot/new_poll', methods=['POST'])
 def poll():
     username = request.form.getlist('user_name')[0]
-    text = list(request.form.getlist('text')[0])
+    text = request.form.getlist('text')[0]
     print(text)
     for line in reader(text):
         poll = line
