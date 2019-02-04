@@ -92,7 +92,7 @@ def poll():
 
 @app.route('/poll_bot/respond', methods=['POST'])
 def respond_to_poll():
-    payload = request.form['payload']
+    payload = json.loads(request.form['payload'])
     original_message = payload["original_message"]
     action_value = payload["actions"][0]["value"]
     question = original_message["text"]
