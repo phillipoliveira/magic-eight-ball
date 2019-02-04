@@ -71,10 +71,10 @@ class Poll(object):
                             action["text"] = action["text"] + " @" + user
                         else:
                             action["text"] = action["text"] + "\n@" + user
-                response = {"text": question,
+                response = json.dumps({"text": question,
                             "response_type": "in_channel",
                             "attachments": attachments
-                            }
+                            })
         return response
 
 
