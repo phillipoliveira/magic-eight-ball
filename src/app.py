@@ -92,8 +92,17 @@ def poll():
 
 @app.route('/poll_bot/respond', methods=['POST'])
 def respond_to_poll():
-    pprint(request.form)
-    return return_error()
+    payload = request.form['payload']
+    original_message = payload["original_message"]
+    action_value = payload["actions"][0]["value"]
+    question = original_message["text"]
+    attachments = original_message["attachments"]
+    user = payload["user"]["name"]
+    response = Poll.form_response(user=user,
+                                  action_value=action_value,
+                                  question=question,
+                                  attachments=attachments)
+    return response
 
 
 def return_error():
