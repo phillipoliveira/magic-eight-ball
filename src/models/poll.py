@@ -1,7 +1,6 @@
 import uuid
 import json
 from pprint import pprint
-import re
 
 
 class Poll(object):
@@ -49,8 +48,8 @@ class Poll(object):
                     "attachments": [
                                         {
                                             "text": formated_options,
-                                            "fallback": "Something went wrong!",
-                                            "callback_id": "poll",
+                                            "fallback": "You are unable to choose a game",
+                                            "callback_id": "wopr_game",
                                             "color": "#3AA3E3",
                                             "attachment_type": "default",
                                             "actions": actions
@@ -60,22 +59,6 @@ class Poll(object):
         pprint(poll_head)
         return json.dumps(poll_head)
 
-    @staticmethod
-    def form_response(user, action_value, question, attachments):
-        for attachment in attachments:
-            if "actions" in attachment:
-                for action in attachment["actions"]:
-                    action["text"] = action["text"].replace(user, "")
-                    if action["value"] == action_value:
-                        if re.search("\n", action["text"]):
-                            action["text"] = action["text"] + " @" + user
-                        else:
-                            action["text"] = action["text"] + "\n@" + user
-                response = {"text": question,
-                            "response_type": "in_channel",
-                            "attachments": attachments
-                            }
-        return response
 
 
 
