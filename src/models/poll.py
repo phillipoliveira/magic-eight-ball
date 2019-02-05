@@ -83,10 +83,14 @@ class Poll(object):
     def form_response(cls, user, action_value, question, attachments):
         for attachment in attachments:
             if "actions" in attachment:
+                print(attachment["text"])
+                print(user)
+                print(action_value)
                 formatted_options = cls.reformat_text(formatted_options=attachment["text"],
                                                       user=user,
-                                                      action_value=action_value)
+                                                      action_value=int(action_value))
 
+                pprint(formatted_options)
                 attachments = [
                                   {"text": formatted_options,
                                    "fallback": "Something went wrong!",
