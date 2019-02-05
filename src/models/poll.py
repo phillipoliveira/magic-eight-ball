@@ -63,7 +63,7 @@ class Poll(object):
             if "actions" in attachment:
                 formatted_options = attachment["text"]
                 for action in attachment["actions"]:
-                    action["text"] = action["text"].replace(user, "")
+                    action["text"] = action["text"].replace("@" + user, "")
                     if action["value"] == action_value:
                         if re.search("\n", action["text"]):
                             action["text"] = action["text"] + " @" + user
