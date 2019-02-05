@@ -102,6 +102,9 @@ def respond_to_poll():
                                   action_value=action_value,
                                   question=question,
                                   attachments=attachments)
+    response = app.response_class(response,
+                                  status=200,
+                                  mimetype='application/json')
     return response
 
 
