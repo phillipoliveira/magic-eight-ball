@@ -10,20 +10,16 @@ class Poll(object):
         self.options = options
         self._id = uuid.uuid4().hex if _id is None else _id
 
-
-    @staticmethod
-    def emoji_dict(num):
-        emoji_dict = {1: ":one:",
-                     2: ":two:",
-                     3: ":three:",
-                     4: ":four:",
-                     5: ":five:",
-                     6: ":six:",
-                     7: ":seven:",
-                     8: ":eight:",
-                     9: ":nine:",
-                     10: ":keycap_ten:"}
-        return emoji_dict[num]
+    emoji_dict = {1: ":one:",
+                  2: ":two:",
+                  3: ":three:",
+                  4: ":four:",
+                  5: ":five:",
+                  6: ":six:",
+                  7: ":seven:",
+                  8: ":eight:",
+                  9: ":nine:",
+                  10: ":keycap_ten:"}
 
     @classmethod
     def create_poll(cls, poll):
@@ -34,12 +30,12 @@ class Poll(object):
         count = 0
         for option in options:
             count += 1
-            option_stg = "{} {}\n".format(cls.emoji_dict(count), (options[count - 1])[0])
+            option_stg = "{} {}\n".format(cls.emoji_dict[count], (options[count - 1])[0].rstrip())
             formatted_options = formatted_options + option_stg
             actions.append({"name": "game",
-                            "text": "{}".format(cls.emoji_dict(count)),
+                            "text": "{}".format(cls.emoji_dict[count]),
                             "type": "button",
-                            "value": "{}".format(cls.emoji_dict(count))})
+                            "value": "{}".format(count - 1)})
         poll_head = {
                     "text": question[0],
                     "response_type": "in_channel",
@@ -57,18 +53,40 @@ class Poll(object):
         pprint(poll_head)
         return json.dumps(poll_head)
 
-    @staticmethod
-    def form_response(user, action_value, question, attachments):
+    @classmethod
+    def reformat_text(cls, formatted_options, user, action_value):
+        options = filter(None, re.split(r'|'.join(cls.emoji_dict.values()), formatted_options))
+        formatted_options_list = list()
+        count = 0
+        user = "@" + user
+        for option in options:
+            split_options = option.split("\n")
+            sub_count = 0
+            for split in split_options:
+                if not re.search('[a-zA-Z]', split):
+                    split_options.remove(split)
+                else:
+                    split_options[sub_count] = split.replace(user, "").lstrip().rstrip()
+                sub_count += 1
+            if count == action_value:
+                split_options.append(user)
+            split_options[0] = cls.emoji_dict[count + 1] + " " + split_options[0] + "\n"
+            if len(split_options) != 1:
+                option_string = " ".join(split_options) + "\n"
+            else:
+                option_string = " ".join(split_options)
+            formatted_options_list.append(option_string)
+            count += 1
+        return "".join(formatted_options_list)
+
+    @classmethod
+    def form_response(cls, user, action_value, question, attachments):
         for attachment in attachments:
             if "actions" in attachment:
-                formatted_options = attachment["text"]
-                for action in attachment["actions"]:
-                    action["text"] = action["text"].replace("@" + user, "")
-                    if action["value"] == action_value:
-                        if re.search("\n", action["text"]):
-                            action["text"] = action["text"] + " @" + user
-                        else:
-                            action["text"] = action["text"] + "\n@" + user
+                formatted_options = cls.reformat_text(formatted_options=attachment["text"],
+                                                      user=user,
+                                                      action_value=action_value)
+
                 attachments = [
                                   {"text": formatted_options,
                                    "fallback": "Something went wrong!",

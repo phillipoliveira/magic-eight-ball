@@ -17,8 +17,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="102" column="52" lean-forward="true" selection-start-line="102" selection-start-column="52" selection-end-line="102" selection-end-column="52" />
+            <state relative-caret-position="122">
+              <caret line="78" selection-start-line="78" selection-end-line="80" selection-end-column="29" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -47,8 +47,8 @@
       <file leaf-file-name="poll.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/models/poll.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="68" column="73" lean-forward="true" selection-start-line="68" selection-start-column="73" selection-end-line="68" selection-end-column="73" />
+            <state relative-caret-position="114">
+              <caret line="89" column="31" selection-start-line="89" selection-start-column="31" selection-end-line="89" selection-end-column="31" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -245,14 +245,14 @@
     <frame x="59" y="28" width="1171" height="720" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49195403" visible="true" weight="0.27304348" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4927769" visible="true" weight="0.27304348" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49913043" weight="0.32905295" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5008696" side_tool="true" weight="0.576244" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49913043" visible="true" weight="0.30176565" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49913043" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info id="Structure" order="1" sideWeight="0.508046" side_tool="true" visible="true" weight="0.27304348" />
+      <window_info id="Structure" order="1" sideWeight="0.5072231" side_tool="true" visible="true" weight="0.27304348" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49913043" weight="0.32744783" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39874738" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -693,8 +693,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="102" column="52" lean-forward="true" selection-start-line="102" selection-start-column="52" selection-end-line="102" selection-end-column="52" />
+        <state relative-caret-position="122">
+          <caret line="78" selection-start-line="78" selection-end-line="80" selection-end-column="29" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
@@ -703,8 +703,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/models/poll.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="68" column="73" lean-forward="true" selection-start-line="68" selection-start-column="73" selection-end-line="68" selection-end-column="73" />
+        <state relative-caret-position="114">
+          <caret line="89" column="31" selection-start-line="89" selection-start-column="31" selection-end-line="89" selection-end-column="31" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
