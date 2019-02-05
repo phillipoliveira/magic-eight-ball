@@ -69,12 +69,14 @@ class Poll(object):
                             action["text"] = action["text"] + " @" + user
                         else:
                             action["text"] = action["text"] + "\n@" + user
-                attachments = {"text": formatted_options,
-                               "fallback": "Something went wrong!",
-                               "callback_id": "poll",
-                               "color": "#3AA3E3",
-                               "attachment_type": "default",
-                               "actions": attachment["actions"]}
+                attachments = [
+                                  {"text": formatted_options,
+                                   "fallback": "Something went wrong!",
+                                   "callback_id": "poll",
+                                   "color": "#3AA3E3",
+                                   "attachment_type": "default",
+                                   "actions": attachment["actions"]}
+                              ]
                 response = json.dumps({"text": question,
                                        "response_type": "in_channel",
                                        "attachments": attachments
