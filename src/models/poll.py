@@ -60,14 +60,12 @@ class Poll(object):
         count = 0
         user = "@" + user
         for option in options:
-            split_options = option.split("\n")
-            sub_count = 0
-            for split in split_options:
-                if not re.search('[a-zA-Z]', split):
-                    split_options.remove(split)
-                else:
-                    split_options[sub_count] = split.replace(user, "").lstrip().rstrip()
-                sub_count += 1
+            dirty_split_options = option.split("\n")
+            split_options = list()
+            for i in dirty_split_options:
+                option = i.lstrip().rstrip().replace(user, "")
+                if re.search('[a-zA-Z]', option):
+                    split_options.append(option)
             if count == action_value:
                 split_options.append(user)
             split_options[0] = cls.emoji_dict[count + 1] + " " + split_options[0] + "\n"
