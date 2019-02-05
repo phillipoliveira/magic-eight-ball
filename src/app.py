@@ -82,6 +82,8 @@ def poll():
     print(poll)
     if len(poll) < 2:
         response = return_error()
+    elif len(poll) > 6:
+        response = too_long()
     else:
         response = Poll.create_poll(poll)
         response = app.response_class(response,
@@ -111,8 +113,16 @@ def respond_to_poll():
 def return_error():
     response = app.response_class(
         response=json.dumps(
-            {"text": "Sorry, I don't understand. Double-check your formating.",
-             "response_type": "in_channel"}),
+            {"text": "Sorry, I don't understand. Double-check your formating."}),
+        status=200,
+        mimetype='application/json')
+    return response
+
+
+def too_long():
+    response = app.response_class(
+        response=json.dumps(
+            {"text": "Sorry, Better Poll can only support five (5) options."}),
         status=200,
         mimetype='application/json')
     return response
