@@ -10,16 +10,17 @@ class Poll(object):
         self.options = options
         self._id = uuid.uuid4().hex if _id is None else _id
 
-    emoji_dict = {1: ":one:",
-                  2: ":two:",
-                  3: ":three:",
-                  4: ":four:",
-                  5: ":five:",
-                  6: ":six:",
-                  7: ":seven:",
-                  8: ":eight:",
-                  9: ":nine:",
-                  10: ":keycap_ten:"}
+    emoji_dict = {1: ":unimpressedjulian:",
+                  2: ":shocked_tim:",
+                  3: ":judgingemma:",
+                  4: ":soul - less:",
+                  5: ":brochette:",
+                  6: ":jesse:",
+                  7: ":dealwithitgibby:",
+                  8: ":bryan:",
+                  9: ":delighteddillvise:",
+                  10: ":curiousbryan:"}
+
 
     @classmethod
     def create_poll(cls, poll):
