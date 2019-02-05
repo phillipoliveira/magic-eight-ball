@@ -73,6 +73,7 @@ class Poll(object):
                 option_string = " ".join(split_options) + "\n"
             else:
                 option_string = " ".join(split_options)
+            option_string = re.sub(' +', ' ', option_string)
             formatted_options_list.append(option_string)
             count += 1
         return "".join(formatted_options_list)
