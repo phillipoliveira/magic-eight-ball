@@ -21,9 +21,9 @@ class Poll(object):
             count = 0
             clean_options = list()
             for option in options:
+                option = str(option[0])
                 try:
                     count += 1
-                    option = str(option)
                     emoji = ":" + re.search(r'\:(\S+)\:', option).group(1) + ":"
                     self.emoji_dict[count] = emoji
                     clean_options.append(option.replace(emoji, "").lstrip())
@@ -44,7 +44,7 @@ class Poll(object):
         count = 0
         for option in options:
             count += 1
-            option_stg = "{} {}\n".format(self.emoji_dict[count], (options[count - 1])[0].rstrip())
+            option_stg = "{} {}\n".format(self.emoji_dict[count], (options[count - 1].rstrip())
             formatted_options = formatted_options + option_stg
             actions.append({"name": "game",
                             "text": "{}".format(self.emoji_dict[count]),
