@@ -44,7 +44,11 @@ class Poll(object):
         count = 0
         for option in options:
             count += 1
-            bolded_option = "*" + option.rstrip().lstrip() + "*"
+            clean_option = option.rstrip().lstrip()
+            if len(clean_option) > 1:
+                bolded_option = "*" + option.rstrip().lstrip() + "*"
+            else:
+                bolded_option = ""
             option_stg = "{} {}\n".format(self.emoji_dict[count], bolded_option)
             formatted_options = formatted_options + option_stg
             actions.append({"name": "game",
@@ -85,7 +89,10 @@ class Poll(object):
             if all([(count == action_value), (user_found is False)]):
                 split_options.append(user)
             pprint(split_options)
-            split_options[0] = self.emoji_dict[count + 1] + " " + split_options[0] + "\n"
+            try:
+                split_options[0] = self.emoji_dict[count + 1] + " " + split_options[0] + "\n"
+            except IndexError:
+                split_options[0] = self.emoji_dict[count + 1]
             if len(split_options) != 1:
                 option_string = " ".join(split_options) + "\n"
             else:
