@@ -71,21 +71,19 @@ def insult():
 
 @app.route('/poll_bot/new_poll', methods=['POST'])
 def poll():
-    username = request.form.getlist('user_name')[0]
-    text = request.form.getlist('text')[0]
-    text = (unidecode(text))
-    print(text)
-    poll = list()
+    # username = request.form.getlist('user_name')[0]
+    text = unidecode(request.form.getlist('text')[0])
+    poll_list = list()
     for line in reader(text):
         if re.search('[a-zA-Z]', str(line)):
-            poll.append(line)
-    print(poll)
-    if len(poll) < 2:
+            poll_list.append(line)
+    if len(poll_list) < 2:
         response = return_error()
-    elif len(poll) > 6:
+    elif len(poll_list) > 6:
         response = too_long()
     else:
-        response = Poll.create_poll(poll)
+        poll = Poll()
+        response = poll.create_poll(poll_list)
         response = app.response_class(response,
                                       status=200,
                                       mimetype='application/json')
@@ -100,7 +98,8 @@ def respond_to_poll():
     question = original_message["text"]
     attachments = original_message["attachments"]
     user = payload["user"]["name"]
-    response = Poll.form_response(user=user,
+    poll = Poll()
+    response = poll.form_response(user=user,
                                   action_value=action_value,
                                   question=question,
                                   attachments=attachments)

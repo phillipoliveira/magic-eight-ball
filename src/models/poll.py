@@ -5,39 +5,52 @@ import re
 
 
 class Poll(object):
-    def __init__(self, question, options, _id=None):
-        self.queston = question
-        self.options = options
-        self._id = uuid.uuid4().hex if _id is None else _id
+    def __init__(self, emoji_dict=None):
+        self.emoji_dict = {1: ":one:",
+                           2: ":two:",
+                           3: ":three:",
+                           4: ":four:",
+                           5: ":five:",
+                           6: ":six:",
+                           7: ":seven:",
+                           8: ":eight:",
+                           9: ":nine:",
+                           10: ":keycap_ten:"} if emoji_dict is None else emoji_dict
 
-    emoji_dict = {1: ":one:",
-                  2: ":two:",
-                  3: ":three:",
-                  4: ":four:",
-                  5: ":five:",
-                  6: ":six:",
-                  7: ":seven:",
-                  8: ":eight:",
-                  9: ":nine:",
-                  10: ":keycap_ten:"}
+    def define_emoji_dict(self, options):
+            count = 0
+            clean_options = list()
+            for option in options:
+                try:
+                    count += 1
+                    emoji = ":" + re.search(r'\:(\S+)\:', option).group(1) + ":"
+                    self.emoji_dict[count] = emoji
+                    clean_options.append(option.replace(emoji, "").lstrip())
+                except AttributeError:
+                    clean_options.append(option)
+                    continue
+            return clean_options
 
-    @classmethod
-    def create_poll(cls, poll):
+    def form_emoji_dict_from_actions(self, actions):
+        for action in actions:
+            self.emoji_dict[int(action['value']) + 1] = action['text']
+
+    def create_poll(self, poll):
         question = poll[0]
-        options = poll[1:]
+        options = self.define_emoji_dict(poll[1:])
         formatted_options = ""
         actions = list()
         count = 0
         for option in options:
             count += 1
-            option_stg = "{} {}\n".format(cls.emoji_dict[count], (options[count - 1])[0].rstrip())
+            option_stg = "{} {}\n".format(self.emoji_dict[count], (options[count - 1]).rstrip())
             formatted_options = formatted_options + option_stg
             actions.append({"name": "game",
-                            "text": "{}".format(cls.emoji_dict[count]),
+                            "text": "{}".format(self.emoji_dict[count]),
                             "type": "button",
                             "value": "{}".format(count - 1)})
         poll_head = {
-                    "text": question[0],
+                    "text": question,
                     "response_type": "in_channel",
                     "attachments": [
                                         {
@@ -50,12 +63,10 @@ class Poll(object):
                                         }
                                    ]
                     }
-        pprint(poll_head)
         return json.dumps(poll_head)
 
-    @classmethod
-    def reformat_text(cls, formatted_options, user, action_value):
-        options = filter(None, re.split(r'|'.join(cls.emoji_dict.values()), formatted_options))
+    def reformat_text(self, formatted_options, user, action_value):
+        options = filter(None, re.split(r'|'.join(self.emoji_dict.values()), formatted_options))
         formatted_options_list = list()
         count = 0
         user = "@" + user
@@ -68,7 +79,7 @@ class Poll(object):
                     split_options.append(option)
             if count == action_value:
                 split_options.append(user)
-            split_options[0] = cls.emoji_dict[count + 1] + " " + split_options[0] + "\n"
+            split_options[0] = self.emoji_dict[count + 1] + " " + split_options[0] + "\n"
             if len(split_options) != 1:
                 option_string = " ".join(split_options) + "\n"
             else:
@@ -78,14 +89,11 @@ class Poll(object):
             count += 1
         return "".join(formatted_options_list)
 
-    @classmethod
-    def form_response(cls, user, action_value, question, attachments):
+    def form_response(self, user, action_value, question, attachments):
         for attachment in attachments:
             if "actions" in attachment:
-                print(attachment["text"])
-                print(user)
-                print(action_value)
-                formatted_options = cls.reformat_text(formatted_options=attachment["text"],
+                self.form_emoji_dict_from_actions(attachment["actions"])
+                formatted_options = self.reformat_text(formatted_options=attachment["text"],
                                                       user=user,
                                                       action_value=int(action_value))
 
@@ -103,6 +111,4 @@ class Poll(object):
                                        "attachments": attachments
                             })
                 return response
-
-
 
