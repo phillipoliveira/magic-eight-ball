@@ -44,7 +44,8 @@ class Poll(object):
         count = 0
         for option in options:
             count += 1
-            option_stg = "{} {}\n".format(self.emoji_dict[count], option.rstrip())
+            bolded_option = "*" + option.rstrip().lstrip() + "*"
+            option_stg = "{} {}\n".format(self.emoji_dict[count], bolded_option)
             formatted_options = formatted_options + option_stg
             actions.append({"name": "game",
                             "text": "{}".format(self.emoji_dict[count]),
