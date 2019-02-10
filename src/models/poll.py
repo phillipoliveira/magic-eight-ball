@@ -84,10 +84,7 @@ class Poll(object):
                     split_options.append(i)
             if all([(count == action_value), (user_found is False)]):
                 split_options.append(user)
-            if count != 0:
-                split_options[0] = self.emoji_dict[count + 1] + " " + split_options[0] + "\n"
-            else:
-                split_options[0] = split_options[0] + "\n"
+            split_options[0] = self.emoji_dict[count + 1] + " " + split_options[0] + "\n"
             if len(split_options) != 1:
                 option_string = " ".join(split_options) + "\n"
             else:
