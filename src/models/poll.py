@@ -75,14 +75,19 @@ class Poll(object):
         for option in options:
             dirty_split_options = option.split("\n")
             split_options = list()
+            user_found = False
             for i in dirty_split_options:
                 if re.search('[a-zA-Z]', i):
-                    if re.search(user, i):
-                        i.replace(user, "")
-                    elif count == action_value:
-                        split_options.append(user)
+                    if all([(re.search(user, i)),(count == action_value)]):
+                        i = i.replace(user, "")
+                        user_found = True
                     split_options.append(i)
-            split_options[0] = self.emoji_dict[count + 1] + " " + split_options[0] + "\n"
+            if all([(count == action_value), (user_found is False)]):
+                split_options.append(user)
+            if count != 0:
+                split_options[0] = self.emoji_dict[count] + " " + split_options[0] + "\n"
+            else:
+                split_options[0] = split_options[0] + "\n"
             if len(split_options) != 1:
                 option_string = " ".join(split_options) + "\n"
             else:
@@ -114,4 +119,3 @@ class Poll(object):
                                        "attachments": attachments
                             })
                 return response
-
