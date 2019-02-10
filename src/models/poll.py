@@ -77,13 +77,14 @@ class Poll(object):
             split_options = list()
             user_found = False
             for i in dirty_split_options:
+                if all([(re.search(user, i)),(count == action_value)]):
+                    i = i.replace(user, "")
+                    user_found = True
                 if re.search('[a-zA-Z]', i):
-                    if all([(re.search(user, i)),(count == action_value)]):
-                        i = i.replace(user, "")
-                        user_found = True
                     split_options.append(i)
             if all([(count == action_value), (user_found is False)]):
                 split_options.append(user)
+            pprint(split_options)
             split_options[0] = self.emoji_dict[count + 1] + " " + split_options[0] + "\n"
             if len(split_options) != 1:
                 option_string = " ".join(split_options) + "\n"
