@@ -92,7 +92,7 @@ class Poll(object):
             try:
                 split_options[0] = self.emoji_dict[count + 1] + " " + split_options[0] + "\n"
             except IndexError:
-                split_options[0] = self.emoji_dict[count + 1]
+                split_options.append(self.emoji_dict[count + 1])
             if len(split_options) != 1:
                 option_string = " ".join(split_options) + "\n"
             else:
