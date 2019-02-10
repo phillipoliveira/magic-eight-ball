@@ -86,13 +86,11 @@ class Poll(object):
                     user_found = True
                 if re.search('[a-zA-Z]', i):
                     split_options.append(i)
+            if len(split_options) == 0:
+                split_options[0] = ""
             if all([(count == action_value), (user_found is False)]):
                 split_options.append(user)
-            pprint(split_options)
-            try:
-                split_options[0] = self.emoji_dict[count + 1] + " " + split_options[0] + "\n"
-            except IndexError:
-                split_options.append(self.emoji_dict[count + 1])
+            split_options[0] = self.emoji_dict[count + 1] + " " + split_options[0] + "\n"
             if len(split_options) != 1:
                 option_string = " ".join(split_options) + "\n"
             else:
