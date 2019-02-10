@@ -23,6 +23,7 @@ class Poll(object):
             for option in options:
                 try:
                     count += 1
+                    option = str(option)
                     emoji = ":" + re.search(r'\:(\S+)\:', option).group(1) + ":"
                     self.emoji_dict[count] = emoji
                     clean_options.append(option.replace(emoji, "").lstrip())
